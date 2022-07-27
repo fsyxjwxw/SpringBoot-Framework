@@ -1,4 +1,4 @@
-# SpringBoot-Framework 一站式功能服务提供框架
+# SpringBoot一站式功能服务提供框架
 此框架主要针对SpringBoot项目各类功能做出封装，整合各类插件，提供简便快速用法；
 
 ### 当前版本 v0.0.1
