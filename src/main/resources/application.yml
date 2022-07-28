@@ -10,3 +10,11 @@ spring:
           url: jdbc:mysql://127.0.0.1:3306/framework
           username: root
           password: 123456
+
+# 开启Swagger的Basic认证功能,默认是false
+knife4j:
+  enable: true
+  basic:
+    enable: true # Basic认证用户名
+    username: admin # Basic认证密码
+    password: 123456
