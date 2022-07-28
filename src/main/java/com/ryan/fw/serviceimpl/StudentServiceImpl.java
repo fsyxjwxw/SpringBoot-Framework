@@ -22,4 +22,5 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, StudentDO> im
         ObjUtils.checkNull(student,"当前id:"+id+"无法确认学生信息");
         return ObjUtils.convert(student,StudentVO.class);
     }
+
 }

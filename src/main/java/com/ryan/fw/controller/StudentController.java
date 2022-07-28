@@ -13,7 +13,6 @@ import javax.annotation.Resource;
  * @date 2022/7/27 12:02
  * @description
  */
-
 @RestController
 public class StudentController {
 
