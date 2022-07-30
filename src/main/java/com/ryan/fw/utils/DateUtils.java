@@ -531,4 +531,16 @@ public class DateUtils {
         return strToLdt(date).toEpochSecond(ZoneOffset.of("+8"));
     }
 
+    /**
+     * 日期转换cron表达式
+     *
+     * @param date 日期
+     * @return String
+     */
+    public static String getCron(Date date) {
+        return Objects.nonNull(date)
+                ? new SimpleDateFormat("ss mm HH dd MM ?").format(date)
+                : null;
+    }
+
 }
