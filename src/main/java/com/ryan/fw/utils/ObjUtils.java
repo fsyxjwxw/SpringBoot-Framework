@@ -1,7 +1,8 @@
 package com.ryan.fw.utils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.ryan.fw.instance.DozerBean;
-import org.dozer.DozerBeanMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class ObjUtils {
 
     /**
      * 对象间转换
+     *
      * @param obj
      * @param clazz
      * @param <T>
@@ -72,6 +74,19 @@ public class ObjUtils {
     public static <T> T toObject(Map<String, Object> map, String key, Class<T> clazz){
         Object o = map.get(key);
         return Objects.nonNull(o) ? (T) o : null;
+    }
+
+    /**
+     * Object转自定义实体
+     *
+     * @param o 对象
+     * @param clazz 类
+     * @param <T> 泛型
+     * @return <T>
+     */
+    public static <T> T toT(Object o, Class<T> clazz){
+        Map<String, Object> map = JSONObject.parseObject(JSON.toJSONString(o));
+        return JSON.parseObject(String.valueOf(new JSONObject(map)), clazz);
     }
 
 }
