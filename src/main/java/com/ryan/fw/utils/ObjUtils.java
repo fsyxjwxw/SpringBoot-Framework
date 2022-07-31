@@ -77,7 +77,7 @@ public class ObjUtils {
     }
 
     /**
-     * Object转自定义实体
+     * LinkedHashMap类型Object转自定义实体
      *
      * @param o 对象
      * @param clazz 类
