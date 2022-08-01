@@ -36,16 +36,16 @@ public class ObjUtils {
      * @param <T>
      * @return
      */
-    public static <T> T convert(Object obj,Class<T> clazz){
+    public static <T> T convert(Object obj, Class<T> clazz) {
         return DozerBean.getInstance().map(obj, clazz);
     }
 
     /**
      * Object转List
      *
-     * @param obj Object对象
+     * @param obj   Object对象
      * @param clazz 实体类
-     * @param <T> 泛型
+     * @param <T>   泛型
      * @return List<T>
      */
     public static <T> List<T> toList(Object obj, Class<T> clazz) {
@@ -53,7 +53,7 @@ public class ObjUtils {
             return new ArrayList<>();
         }
         List<T> result = new ArrayList<T>();
-        if(obj instanceof List<?>) {
+        if (obj instanceof List<?>) {
             for (Object o : (List<?>) obj) {
                 result.add(clazz.cast(o));
             }
@@ -65,13 +65,13 @@ public class ObjUtils {
     /**
      * map转换为Object判空
      *
-     * @param map map对象
-     * @param key key
+     * @param map   map对象
+     * @param key   key
      * @param clazz Object
-     * @param <T> 泛型
+     * @param <T>   泛型
      * @return 泛型
      */
-    public static <T> T toObject(Map<String, Object> map, String key, Class<T> clazz){
+    public static <T> T toObject(Map<String, Object> map, String key, Class<T> clazz) {
         Object o = map.get(key);
         return Objects.nonNull(o) ? (T) o : null;
     }
@@ -79,14 +79,25 @@ public class ObjUtils {
     /**
      * LinkedHashMap类型Object转自定义实体
      *
-     * @param o 对象
+     * @param o     对象
      * @param clazz 类
-     * @param <T> 泛型
+     * @param <T>   泛型
      * @return <T>
      */
-    public static <T> T toT(Object o, Class<T> clazz){
+    public static <T> T toT(Object o, Class<T> clazz) {
         Map<String, Object> map = JSONObject.parseObject(JSON.toJSONString(o));
         return JSON.parseObject(String.valueOf(new JSONObject(map)), clazz);
+    }
+
+    /**
+     * 对象转换map
+     *
+     * @param obj 任意对象
+     * @return Map
+     */
+    public static Map<String, Object> objToMap(Object obj) {
+        Map<String, Object> map = JSONObject.parseObject(JSON.toJSONString(obj));
+        return map;
     }
 
 }
