@@ -28,4 +28,10 @@ public class StudentController {
         return Result.success("查询成功", studentService.one(id));
     }
 
+    @ApiOperation("分页查询学生信息")
+    @GetMapping("/getPageList")
+    public Result getPageList(@RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize) {
+        return Result.success("查询成功", studentService.getPageList(currentPage, pageSize));
+    }
+
 }

@@ -55,7 +55,7 @@ public class ObjUtils {
         List<T> result = new ArrayList<T>();
         if (obj instanceof List<?>) {
             for (Object o : (List<?>) obj) {
-                result.add(clazz.cast(o));
+                result.add(convert(o,clazz));
             }
             return result;
         }
