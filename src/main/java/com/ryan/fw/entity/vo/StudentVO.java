@@ -1,5 +1,7 @@
 package com.ryan.fw.entity.vo;
 
+import com.ryan.fw.annotations.SetValue;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 /**
@@ -17,6 +19,10 @@ public class StudentVO {
     private String name;
     private Integer age;
     private String sex;
-    private Integer isExist;
+
+    @ApiModelProperty(name = "isExist", value = "xxx是否存在：fase-->不存在，true-->存在")
+    @SetValue(beanName = "studentService", method = "checkAndReturn", paramType = Long.class, targetFiled = "isExist")
+    private Boolean isExist;
+
     private String remark;
 }

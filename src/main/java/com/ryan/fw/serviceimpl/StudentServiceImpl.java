@@ -2,15 +2,18 @@ package com.ryan.fw.serviceimpl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ryan.fw.annotations.NeedSetFiledValue;
 import com.ryan.fw.entity.db.StudentDO;
 import com.ryan.fw.entity.vo.StudentPageVO;
 import com.ryan.fw.entity.vo.StudentVO;
 import com.ryan.fw.mapper.StudentMapper;
 import com.ryan.fw.service.StudentService;
 import com.ryan.fw.utils.ObjUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Ryan
@@ -19,6 +22,27 @@ import java.util.List;
  */
 @Service
 public class StudentServiceImpl extends ServiceImpl<StudentMapper, StudentDO> implements StudentService {
+
+    @Override
+    public StudentDO init() {
+        return new StudentDO();
+    }
+
+    @Override
+    public StudentDO copyProperties(Object o1, Object o2) {
+        BeanUtils.copyProperties(o1, o2);
+        return (StudentDO) o2;
+    }
+
+    @Override
+    public void checkIsNull(Object o, String msg) {
+        Optional.ofNullable(o).orElseThrow(() -> new RuntimeException(msg));
+    }
+
+    @Override
+    public StudentDO checkAndReturn(Long id) {
+        return Optional.ofNullable(super.getById(id)).orElseThrow(() -> new RuntimeException("数据不存在"));
+    }
 
     @Override
     public StudentVO one(String id) {
@@ -40,6 +64,14 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, StudentDO> im
         List<StudentVO> studentVO = ObjUtils.toList(records, StudentVO.class);
         //返回结果
         return StudentPageVO.builder().data(studentVO).count(page.getSize()).build();
+    }
+
+    @NeedSetFiledValue
+    @Override
+    public StudentVO testToBoolean(Long id) {
+        StudentVO vo = new StudentVO();
+        BeanUtils.copyProperties(checkAndReturn(id), vo);
+        return vo;
     }
 
 }
