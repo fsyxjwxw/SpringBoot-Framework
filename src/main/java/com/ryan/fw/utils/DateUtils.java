@@ -543,4 +543,177 @@ public class DateUtils {
                 : null;
     }
 
+    /**
+     * 获取前一天日期
+     *
+     * @param str
+     * @return
+     */
+    public static String getLastDate(String str) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        Date date = null;
+        try {
+            date = sdf.parse(str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        calendar.setTime(date);
+        int day = calendar.get(Calendar.DATE);
+        calendar.set(Calendar.DATE, day - 1);
+        return sdf.format(calendar.getTime());
+    }
+
+    /**
+     * 获取后一天日期
+     *
+     * @param str
+     * @return
+     */
+    public static String getNextDate(String str) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        Date date = null;
+        try {
+            date = sdf.parse(str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        calendar.setTime(date);
+        int day = calendar.get(Calendar.DATE);
+        calendar.set(Calendar.DATE, day + 1);
+        return sdf.format(calendar.getTime());
+    }
+
+    /**
+     * 获取后几天日期
+     *
+     * @param str
+     * @param num
+     * @return
+     */
+    public static String getNextDate(String str, Integer num) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        Date date = null;
+        try {
+            date = sdf.parse(str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        calendar.setTime(date);
+        int day = calendar.get(Calendar.DATE);
+        calendar.set(Calendar.DATE, day + num);
+        return sdf.format(calendar.getTime());
+    }
+
+    /**
+     * 获取时间间隔
+     *
+     * @param s1
+     * @param s2
+     * @return
+     */
+    public static Integer getDateInterval(String s1, String s2) {
+        long c = DateUtils.getTimes(s2) - DateUtils.getTimes(s1);
+        c = c / 1000 / 60 / 60 / 24;
+        return Math.toIntExact(Math.abs(c));
+    }
+
+    /**
+     * 获取时间戳
+     *
+     * @param str
+     * @return
+     */
+    public static Long getTimes(String str) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = sdf.parse(str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date.getTime();
+    }
+
+    /**
+     * 获取当前日期-时间
+     *
+     * @return
+     */
+    public static String getCurrentTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(new Date());
+    }
+
+    /**
+     * 获取当前日期
+     *
+     * @return
+     */
+    public static String getCurrentDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(new Date());
+    }
+
+    /**
+     * 获取日期路径(/2022/02/04)
+     *
+     * @return
+     */
+    public static String getDatePath() {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        String month = String.valueOf(cal.get(Calendar.MONTH) + 1);
+        String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
+        if (month.length() == 1) {
+            month = "0" + month;
+        }
+        if (day.length() == 1) {
+            day = "0" + day;
+        }
+        return "/" + year + "/" + month + "/" + day;
+    }
+
+    /**
+     * 格式化DateTime
+     *
+     * @param str
+     * @return
+     */
+    public static String formatDateTime(String str) {
+        if (Objects.nonNull(str)) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            try {
+                return sdf.format(sdf.parse(str));
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return str;
+            }
+        } else {
+            return str;
+        }
+    }
+
+    /**
+     * 格式化Date
+     *
+     * @param str
+     * @return
+     */
+    public static String formatDate(String str) {
+        if (Objects.nonNull(str)) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                return sdf.format(sdf.parse(str));
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return str;
+            }
+        } else {
+            return str;
+        }
+    }
+
 }

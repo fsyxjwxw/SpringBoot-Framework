@@ -24,4 +24,5 @@ public class StudentDO extends BaseDO {
     private String sex;
     private Integer isExist;
     private String remark;
+    private Integer delFlag;
 }

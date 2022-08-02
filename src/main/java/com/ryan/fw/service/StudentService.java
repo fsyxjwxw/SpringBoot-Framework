@@ -2,6 +2,7 @@ package com.ryan.fw.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ryan.fw.entity.db.StudentDO;
+import com.ryan.fw.entity.dto.StudentDTO;
 import com.ryan.fw.entity.vo.StudentPageVO;
 import com.ryan.fw.entity.vo.StudentVO;
 
@@ -30,5 +31,13 @@ public interface StudentService extends IService<StudentDO> {
      * @return StudentPageVO
      */
     public StudentPageVO getPageList(Integer currentPage, Integer pageSize);
+
+    /**
+     * 插入单条数据
+     *
+     * @param studentDTO
+     * @return Boolean
+     */
+    public Boolean insertOne(StudentDTO studentDTO);
 
 }

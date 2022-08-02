@@ -24,6 +24,6 @@ public class BaseDO {
     /**
      * 修改时间（格式 yyyy-MM-DD HH:mm:ss）
      */
-    @TableField(fill = FieldFill.UPDATE)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 }
