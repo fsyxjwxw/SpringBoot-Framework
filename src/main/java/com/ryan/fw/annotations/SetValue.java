@@ -19,7 +19,7 @@ public @interface SetValue {
 	 *
 	 * @return String
 	 */
-	String beanName();
+	Class<?> beanName();
 
 	/**
 	 * 方法名称
