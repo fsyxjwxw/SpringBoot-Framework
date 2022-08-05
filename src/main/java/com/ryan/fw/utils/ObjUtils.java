@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.ryan.fw.instance.DozerBean;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author Ryan
@@ -98,6 +95,29 @@ public class ObjUtils {
     public static Map<String, Object> objToMap(Object obj) {
         Map<String, Object> map = JSONObject.parseObject(JSON.toJSONString(obj));
         return map;
+    }
+
+    /**
+     * 仅根据StringKey进行排序
+     *
+     * @param map 数据集合
+     * @param isReverse 是否倒序，true-->是，false-->否
+     * @return Map<String, Object>
+     */
+    public static Map<String, Object> sortOnlyByStringKey(Map<String, Object> map, Boolean isReverse){
+        Map<String, Object> sortMap = new HashMap<>(map.size());
+        if (isReverse) {
+            map.entrySet()
+                    .stream()
+                    .sorted(Map.Entry.<String, Object>comparingByKey().reversed())
+                    .forEachOrdered(e -> sortMap.put(e.getKey(),e.getValue()));
+        } else {
+            map.entrySet()
+                    .stream()
+                    .sorted(Map.Entry.comparingByKey())
+                    .forEachOrdered(e -> sortMap.put(e.getKey(),e.getValue()));
+        }
+        return sortMap;
     }
 
 }
