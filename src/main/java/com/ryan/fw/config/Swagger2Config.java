@@ -31,9 +31,9 @@ public class Swagger2Config {
 
     public ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("SMILE商城程序接口文档")
+                .title("Framework接口文档")
                 .description("Rest API接口")
-                .termsOfServiceUrl("暂无官网")
+                .termsOfServiceUrl("https://github.com/fsyxjwxw/SpringBoot-Framework")
                 .version("1.0").build();
 
     }
