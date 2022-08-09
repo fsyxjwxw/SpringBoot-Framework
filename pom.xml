@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.ryan.fw</groupId>
     <artifactId>framework</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <name>Framework</name>
     <description>Framework project for Spring Boot</description>
     <properties>
@@ -56,6 +56,13 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
+        </dependency>
+
+        <!-- Easy Es-->
+        <dependency>
+            <groupId>cn.easy-es</groupId>
+            <artifactId>easy-es-boot-starter</artifactId>
+            <version>0.9.80</version>
         </dependency>
 
         <!-- Dozer -->

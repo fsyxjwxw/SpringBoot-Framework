@@ -1,5 +1,6 @@
 package com.ryan.fw.exception;
 
+import cn.hutool.core.util.StrUtil;
 import com.ryan.fw.entity.co.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,13 @@ public class GlobalExceptionHandle {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = RuntimeException.class)
     public Result handle(RuntimeException e) {
-        log.error("【运行异常】" + e.getMessage());
-        return Result.err(e.getMessage());
+        String message = e.getMessage();
+        if (StrUtil.isBlank(message)) {
+            message = "服务异常";
+            e.printStackTrace();
+        } else {
+            log.error("【运行异常】" + message);
+        }
+        return Result.err(message);
     }
 }

@@ -26,4 +26,9 @@ public class BaseDO {
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
+
+    /**
+     * 删除标识(0-未删除，1-已删除)
+     */
+    private Integer delFlag;
 }
