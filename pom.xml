@@ -73,9 +73,9 @@
 
         <!-- Dozer -->
         <dependency>
-            <groupId>net.sf.dozer</groupId>
-            <artifactId>dozer</artifactId>
-            <version>5.5.1</version>
+            <groupId>com.github.dozermapper</groupId>
+            <artifactId>dozer-spring-boot-starter</artifactId>
+            <version>6.5.2</version>
         </dependency>
 
         <!-- Swagger -->

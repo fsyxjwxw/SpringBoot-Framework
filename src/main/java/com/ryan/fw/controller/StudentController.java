@@ -52,4 +52,16 @@ public class StudentController {
         return Result.success("查询成功", studentService.testToBoolean(id));
     }
 
+    @ApiOperation("单线程查询")
+    @GetMapping("/singleThread")
+    public Result singleThread(){
+        return Result.success("查询成功",studentService.singleThread());
+    }
+
+    @ApiOperation("多线程查询")
+    @GetMapping("/multiThread")
+    public Result multiThread(){
+        return Result.success("查询成功",studentService.multiThread());
+    }
+
 }

@@ -13,6 +13,7 @@ import com.ryan.fw.utils.ObjUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,6 +81,22 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, StudentDO> im
         StudentVO vo = new StudentVO();
         BeanUtils.copyProperties(checkAndReturn(id), vo);
         return vo;
+    }
+
+    @Override
+    public String singleThread() {
+        List<StudentDO> list = new ArrayList<>();
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 2000; i++) {
+            list = this.list();
+        }
+        long endTime = System.currentTimeMillis();
+        return "总耗时" + String.valueOf(endTime - startTime) + "ms";
+    }
+
+    @Override
+    public String multiThread() {
+        return null;
     }
 
 }

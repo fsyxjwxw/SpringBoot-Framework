@@ -45,4 +45,17 @@ public interface StudentService extends IService<StudentDO>, BaseService {
      */
     StudentVO testToBoolean(Long id);
 
+    /**
+     * 单线程查询
+     *
+     * @return 消耗时间
+     */
+    public String singleThread();
+
+    /**
+     * 多线程查询
+     *
+     * @return 消耗时间
+     */
+    public String multiThread();
 }

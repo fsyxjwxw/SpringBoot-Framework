@@ -2,8 +2,11 @@ package com.ryan.fw.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.ryan.fw.instance.DozerBean;
+import com.github.dozermapper.core.DozerBeanMapperBuilder;
+import com.github.dozermapper.core.Mapper;
+import com.ryan.fw.config.DozerBeanMapperConfig;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -12,6 +15,9 @@ import java.util.*;
  * @description 对象工具类
  */
 public class ObjUtils {
+
+    @Resource
+    private static Mapper dozerBeanMapper;
 
     /**
      * 验证对象是否为 null
@@ -34,7 +40,7 @@ public class ObjUtils {
      * @return
      */
     public static <T> T convert(Object obj, Class<T> clazz) {
-        return DozerBean.getInstance().map(obj, clazz);
+        return DozerBeanMapperConfig.getInstance().map(obj, clazz);
     }
 
     /**

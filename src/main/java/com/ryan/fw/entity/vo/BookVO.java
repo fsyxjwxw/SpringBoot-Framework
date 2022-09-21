@@ -3,6 +3,7 @@ package com.ryan.fw.entity.vo;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * @author Ryan
@@ -20,5 +21,7 @@ public class BookVO {
     private BigDecimal price;
     private String author;
     private String type;
+    private LocalDateTime createTime;
+    private LocalDateTime updateTime;
     private String description;
 }
